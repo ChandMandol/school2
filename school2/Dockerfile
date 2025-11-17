@@ -27,4 +27,5 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8090
 
 # Run the application
+
 ENTRYPOINT ["java", "-jar", "app.jar"]docker build -t chand241/springboot-app .
