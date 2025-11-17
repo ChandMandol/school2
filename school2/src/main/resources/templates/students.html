@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* বেস স্টাইল */
+        :root {
+            --primary-color: #17a2b8; /* Teal/Info color for student view */
+            --secondary-color: #6c757d; /* Gray - Back */
+            --bg-light: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-dark: #344767;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        
+        /* --- প্রধান কন্টেইনার --- */
+        .container {
+            max-width: 1100px; 
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        /* --- শিরোনাম --- */
+        h1 {
+            color: var(--text-dark);
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+        
+        /* --- অ্যাকশনস এবং ব্যাক বাটন --- */
+        .actions {
+            text-align: right; /* ডানদিকে সারিবদ্ধ */
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn .material-icons {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .back-btn {
+            background-color: var(--secondary-color);
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* --- টেবিল ডিজাইন --- */
+        .table-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        /* টেবিল হেডার */
+        th {
+            background-color: var(--primary-color); /* Teal হেডার */
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.95em;
+        }
+        
+        /* Zebra Stripping */
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tbody tr:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Enrolled Students Directory 📘</h1>
+        
+        <div class="actions">
+            <a th:href="@{/}" class="btn back-btn">
+                <i class="material-icons">arrow_back</i> Back to Home
+            </a>
+        </div>
+        
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Student ID</th>
+                        <th>Course</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="student : ${students}">
+                        <td th:text="${student.id}"></td>
+                        <td th:text="${student.name}"></td>
+                        <td th:text="${student.studentId}"></td>
+                        <td th:text="${student.course}"></td>
+                        <td th:text="${student.grade}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

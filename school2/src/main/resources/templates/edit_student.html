@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* বেস স্টাইল */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --update-color: #ffc107; /* Amber/Yellow for Update */
+            --secondary-color: #6c757d; /* Gray */
+            --bg-light: #f7f9fc;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        /* কন্টেইনার (ফর্ম কার্ড) */
+        .container {
+            max-width: 550px;
+            width: 90%;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            /* Edit ফর্মের জন্য হলুদ অ্যাকসেন্ট */
+            border-top: 5px solid var(--update-color); 
+        }
+        
+        /* শিরোনাম */
+        h1 {
+            color: var(--text-dark);
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 2em;
+            /* Update শিরোনামের জন্য একটু আলাদা রঙ */
+            color: #d69900; 
+        }
+        
+        /* ফর্ম গ্রুপ */
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+        
+        /* ইনপুট ফিল্ড */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+        }
+        
+        input[type="text"]:focus {
+            border-color: var(--update-color); /* ফোকাস রঙ পরিবর্তন */
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.4); /* ফোকাস রিং */
+            outline: none;
+        }
+
+        /* বোতামের স্টাইল */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn {
+            background-color: var(--update-color); /* হলুদ রং */
+            color: var(--text-dark); /* ফন্ট কালার কালো */
+        }
+        .submit-btn:hover {
+            background-color: #e0a800; /* একটু গাঢ় হলুদ */
+        }
+
+        .cancel-btn {
+            background-color: var(--secondary-color);
+        }
+        .cancel-btn:hover {
+            background-color: #5a6268;
+        }
+        
+        /* অ্যাকশন বাটনের লেআউট */
+        .form-actions {
+            text-align: right;
+            margin-top: 30px;
+        }
+        
+        .form-actions .btn {
+            margin-left: 15px;
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Student Record 📝</h1>
+        
+        <form th:action="@{/admin/students/{id}(id=${student.id})}" th:object="${student}" method="post">
+            
+            <input type="hidden" th:field="*{id}">
+            
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" th:field="*{name}" placeholder="Enter student's full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="studentId">Student ID:</label>
+                <input type="text" id="studentId" name="studentId" th:field="*{studentId}" placeholder="Unique student ID" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="course">Course:</label>
+                <input type="text" id="course" name="course" th:field="*{course}" placeholder="e.g., Computer Science, Arts">
+            </div>
+            
+            <div class="form-group">
+                <label for="grade">Grade:</label>
+                <input type="text" id="grade" name="grade" th:field="*{grade}" placeholder="Current Grade/Year">
+            </div>
+            
+            <div class="form-actions">
+                <a th:href="@{/admin/students}" class="btn cancel-btn">Cancel</a>
+                <button type="submit" class="btn submit-btn">Update Student</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

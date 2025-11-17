@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* বেস স্টাইল */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --success-color: #28a745; /* Green */
+            --bg-light: #f7f9fc;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        /* লগইন কার্ড */
+        .login-container {
+            max-width: 450px;
+            width: 90%;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        /* শিরোনাম */
+        h1 {
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 2em;
+        }
+        
+        /* ফর্ম গ্রুপ */
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+        
+        /* পাসওয়ার্ড ইনপুট */
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+        }
+        
+        input[type="password"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        
+        /* এরর মেসেজ */
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        /* বোতাম */
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        
+        .btn-login {
+            background-color: var(--primary-color);
+        }
+        
+        .btn-login:hover {
+            background-color: #0069d9;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-login:active {
+            transform: translateY(0);
+        }
+        
+        /* হোম বাটন */
+        .home-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .home-link:hover {
+            color: var(--text-dark);
+        }
+        
+        /* আইকন */
+        .lock-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="lock-icon">🔒</div>
+        <h1>Admin Login</h1>
+        
+        <!-- Error message -->
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+        
+        <form th:action="@{/admin/login}" method="post">
+            <div class="form-group">
+                <label for="password">Enter Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter admin password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-login">Login</button>
+        </form>
+        
+        <a href="/" class="home-link">← Back to Home</a>
+    </div>
+</body>
+</html>

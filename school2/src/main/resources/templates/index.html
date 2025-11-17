@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* বেস স্টাইল */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --admin-color: #28a745; /* Green for Admin */
+            --student-color: #17a2b8; /* Teal for Student */
+            --bg-light: #f7f9fc;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        
+        /* হেডার */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 15px auto 0;
+        }
+        
+        /* মেইন কন্টেন্ট */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        /* সেকশন গ্রিড */
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        /* সেকশন কার্ড */
+        .section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* সেকশন আইকন */
+        .section-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+        
+        .admin-section .section-icon {
+            color: var(--admin-color);
+        }
+        
+        .student-section .section-icon {
+            color: var(--student-color);
+        }
+        
+        /* সেকশন শিরোনাম */
+        .section h2 {
+            color: var(--text-dark);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .section p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        /* বোতাম */
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .admin-btn {
+            background-color: var(--admin-color);
+        }
+        
+        .admin-btn:hover {
+            background-color: #218838;
+        }
+        
+        .student-btn {
+            background-color: var(--student-color);
+        }
+        
+        .student-btn:hover {
+            background-color: #138496;
+        }
+        
+        /* ফুটার */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+        
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                margin: 30px auto;
+            }
+            
+            .sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎓 Student Management System</h1>
+        <p>Your comprehensive solution for managing student records efficiently</p>
+    </div>
+    
+    <div class="container">
+        <div class="sections">
+            <div class="section admin-section">
+                <div class="section-icon">🔐</div>
+                <h2>Admin Section</h2>
+                <p>Manage student records with full CRUD operations. Add, edit, delete, and view all student information.</p>
+                <a href="/admin/login" class="btn admin-btn">Admin Login</a>
+            </div>
+            
+            <div class="section student-section">
+                <div class="section-icon">👥</div>
+                <h2>Student Section</h2>
+                <p>View student information and records. Browse through the student database.</p>
+                <a href="/students" class="btn student-btn">View Students</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Student Management System | Secure & Reliable</p>
+    </div>
+</body>
+</html>
